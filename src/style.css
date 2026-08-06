@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family, 'Inter', sans-serif);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* =========================================================
+   THEME 1: AWWWARDS STYLE (Clean, Bold, White)
+   ========================================================= */
+[data-theme="awwwards"] {
+  --font-family: 'Plus Jakarta Sans', sans-serif;
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --text-muted: #777777;
+  
+  --nav-border: 1px solid #eaeaea;
+  
+  /* Category Pills */
+  --cat-bg: #ffffff;
+  --cat-color: #111111;
+  --cat-border: 1px solid #e0e0e0;
+  --cat-radius: 20px;
+  --cat-hover-bg: #f5f5f5;
+  --cat-active-bg: #111111;
+  --cat-active-color: #ffffff;
+  
+  /* Grid Layout */
+  --grid-padding-x: 4rem;
+  --grid-padding-y: 2rem;
+  --grid-gap: 3rem 2rem;
+  --grid-min-col: 400px;
+  
+  /* Card Design */
+  --card-radius: 8px;
+  --card-bg: transparent;
+  --card-border: none;
+  --card-shadow: none;
+  --video-radius: 8px;
+  --title-size: 1.1rem;
+  --title-weight: 700;
+  --title-margin-top: 1rem;
+  
+  /* Icon */
+  --icon-bg: #f4f4f4;
+  --icon-color: #111;
+}
+
+/* =========================================================
+   THEME 2: BEHANCE STYLE (Dense, Dark Pills, Minimal)
+   ========================================================= */
+[data-theme="behance"] {
+  --font-family: 'Inter', sans-serif;
+  --bg-color: #f9f9f9;
+  --text-color: #191919;
+  --text-muted: #696969;
+  
+  --nav-border: 1px solid #ebebeb;
+  
+  /* Category Pills */
+  --cat-bg: #222222;
+  --cat-color: #ffffff;
+  --cat-border: 1px solid transparent;
+  --cat-radius: 24px;
+  --cat-hover-bg: #000000;
+  --cat-active-bg: #0057ff; /* Behance blue-ish */
+  --cat-active-color: #ffffff;
+  
+  /* Grid Layout */
+  --grid-padding-x: 2rem;
+  --grid-padding-y: 1.5rem;
+  --grid-gap: 2rem 1.5rem;
+  --grid-min-col: 300px;
+  
+  /* Card Design */
+  --card-radius: 4px;
+  --card-bg: transparent;
+  --card-border: none;
+  --card-shadow: none;
+  --video-radius: 4px;
+  --title-size: 0.95rem;
+  --title-weight: 600;
+  --title-margin-top: 0.6rem;
+  
+  /* Icon */
+  --icon-bg: transparent;
+  --icon-color: #696969;
+}
