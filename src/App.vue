@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container" :data-theme="currentTheme">
+  <div class="app-container" data-theme="behance">
     
     <div class="sticky-header">
       <!-- Top Navbar -->
@@ -11,9 +11,7 @@
         <input type="text" placeholder="Search by Templates..." class="search-input" />
       </div>
 
-      <div class="nav-actions">
-        <ThemeSwitcher v-model="currentTheme" />
-      </div>
+
     </header>
 
     <!-- Horizontal Category Bar -->
@@ -60,7 +58,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import TemplateGrid from './components/TemplateGrid.vue';
-import ThemeSwitcher from './components/ThemeSwitcher.vue';
 import data from './data.json';
 
 const categoryBarRef = ref<HTMLElement | null>(null);
@@ -104,7 +101,7 @@ const categories = ref(data.categories || []);
 const itemsMap = ref<Record<string, any>>(data.items || {});
 
 const selectedCategory = ref('All');
-const currentTheme = ref('awwwards'); // Default theme
+
 
 const getPriority = (category: string) => {
   if (category === 'ReactBits') return 2;
@@ -168,7 +165,8 @@ const handleCategorySelect = (category: string) => {
   background: #f4f4f4;
   border-radius: 20px;
   padding: 0.5rem 1rem;
-  width: 400px;
+  flex: 1;
+  max-width: 400px;
 }
 [data-theme="behance"] .search-container {
   background: #ffffff;
@@ -253,5 +251,21 @@ const handleCategorySelect = (category: string) => {
 /* Main Content */
 .main-content {
   flex: 1;
+}
+
+@media (max-width: 600px) {
+  .top-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .search-container {
+    max-width: 100%;
+    width: 100%;
+  }
+  .category-bar-wrapper {
+    padding: 1rem 1rem 0.5rem;
+  }
 }
 </style>
