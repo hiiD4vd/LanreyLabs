@@ -1,5 +1,5 @@
 <template>
-  <div class="template-card" @click="$emit('click')" ref="cardRef">
+  <div class="template-card" @click="$emit('select')" ref="cardRef">
     <div class="video-container" ref="videoContainer" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
       <!-- Media will only load its source when the card is intersecting (lazy loaded) -->
       <video
@@ -56,7 +56,7 @@ const props = defineProps<{
   };
 }>();
 
-defineEmits(['click']);
+defineEmits(['select']);
 
 const cardRef = ref<HTMLElement | null>(null);
 const videoRef = ref<HTMLVideoElement | null>(null);
