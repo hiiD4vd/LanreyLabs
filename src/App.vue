@@ -51,6 +51,7 @@
     <main class="main-content">
       <TemplateGrid 
         :items="filteredItems"
+      />
     </main>
     
   </div>
