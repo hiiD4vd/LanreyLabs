@@ -4,14 +4,17 @@
     <div class="sticky-header">
       <!-- Top Navbar -->
     <header class="top-navbar">
-      <div class="logo">Showcase<span class="dot">.</span></div>
-      
-      <div class="search-container">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" placeholder="Search by Templates..." class="search-input" />
+      <!-- Row 1: Logo -->
+      <div class="navbar-row navbar-row-top">
+        <div class="logo">LanreyLabs<span class="dot">.</span></div>
       </div>
-
-
+      <!-- Row 2: Search bar full width -->
+      <div class="navbar-row navbar-row-search">
+        <div class="search-container">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" placeholder="Search templates..." class="search-input" />
+        </div>
+      </div>
     </header>
 
     <!-- Horizontal Category Bar -->
@@ -136,91 +139,100 @@ const handleCategorySelect = (category: string) => {
   z-index: 100;
   background: var(--bg-color);
   width: 100%;
-  max-width: 100vw;
+  box-sizing: border-box;
+  border-bottom: var(--nav-border);
 }
 
 /* Top Navbar */
 .top-navbar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  border-bottom: var(--nav-border);
+  flex-direction: column;
+  padding: 0.875rem 1.25rem 0.75rem;
   background: var(--bg-color);
-  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 100%;
+  gap: 0.65rem;
+}
+
+/* Navbar Rows */
+.navbar-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.navbar-row-top {
+  justify-content: space-between;
+}
+
+.navbar-row-search {
+  width: 100%;
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: -0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .logo .dot {
   color: #0057ff;
 }
 
+/* Search Box — always full width of its row */
 .search-container {
   display: flex;
   align-items: center;
-  background: #f4f4f4;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  flex: 1;
-  max-width: 400px;
-}
-[data-theme="behance"] .search-container {
-  background: #ffffff;
-  border: 1px solid #ebebeb;
+  background: #f0f0f0;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  padding: 0.55rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 .search-icon {
-  color: #888;
+  color: #999;
   margin-right: 0.5rem;
+  flex-shrink: 0;
 }
 .search-input {
   border: none;
   background: transparent;
   outline: none;
   width: 100%;
+  min-width: 0;
   font-family: inherit;
-  font-size: 0.95rem;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  font-size: 0.9rem;
 }
 
 /* Category Bar */
 .category-bar-wrapper {
-  padding: 1.5rem 2rem 0.5rem;
+  padding: 0.75rem 1.25rem 0.5rem;
   background: var(--bg-color);
-  flex-shrink: 0;
   width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .category-bar {
   display: flex;
-  gap: 0.8rem;
+  gap: 0.6rem;
   overflow-x: auto;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  /* Make sure pills don't get cut */
+  padding-right: 1.25rem;
 }
 
-/* Hide scrollbar for category bar */
-.category-bar::-webkit-scrollbar {
-  display: none;
-}
-.category-bar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+.category-bar::-webkit-scrollbar { display: none; }
+.category-bar { -ms-overflow-style: none; scrollbar-width: none; }
 
-.category-bar.is-dragging {
-  cursor: grabbing;
-}
+.category-bar.is-dragging { cursor: grabbing; }
 .category-bar.is-dragging .cat-pill {
   cursor: grabbing;
-  pointer-events: none; /* Mencegah tombol terpencet saat digeser */
+  pointer-events: none;
 }
 
 .cat-pill {
@@ -228,20 +240,16 @@ const handleCategorySelect = (category: string) => {
   color: var(--cat-color);
   border: var(--cat-border);
   border-radius: var(--cat-radius);
-  padding: 0.6rem 1.2rem;
+  padding: 0.55rem 1rem;
   font-family: inherit;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
   transition: all 0.2s ease;
 }
-
-.cat-pill:hover {
-  background: var(--cat-hover-bg);
-}
-
+.cat-pill:hover { background: var(--cat-hover-bg); }
 .cat-pill.active {
   background: var(--cat-active-bg);
   color: var(--cat-active-color);
@@ -251,21 +259,5 @@ const handleCategorySelect = (category: string) => {
 /* Main Content */
 .main-content {
   flex: 1;
-}
-
-@media (max-width: 600px) {
-  .top-navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1rem;
-  }
-  .search-container {
-    max-width: 100%;
-    width: 100%;
-  }
-  .category-bar-wrapper {
-    padding: 1rem 1rem 0.5rem;
-  }
 }
 </style>
