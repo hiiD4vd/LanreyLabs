@@ -210,20 +210,17 @@ const handleCategorySelect = (category: string) => {
 
 /* Category Bar */
 .category-bar-wrapper {
-  padding: 0.75rem 1.25rem 0.5rem;
+  padding: 0.75rem 0 0.5rem;
   background: var(--bg-color);
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .category-bar {
   display: flex;
   gap: 0.6rem;
   overflow-x: auto;
-  padding-bottom: 0.5rem;
-  /* Make sure pills don't get cut */
-  padding-right: 1.25rem;
+  padding: 0 1.25rem 0.5rem 1.25rem;
 }
 
 .category-bar::-webkit-scrollbar { display: none; }
