@@ -71,7 +71,6 @@ let scrollLeft: number;
 const onMouseDown = (e: MouseEvent) => {
   isDown = true;
   if (!categoryBarRef.value) return;
-  categoryBarRef.value.classList.add('is-dragging');
   startX = e.pageX - categoryBarRef.value.offsetLeft;
   scrollLeft = categoryBarRef.value.scrollLeft;
 };
@@ -88,10 +87,14 @@ const onMouseUp = () => {
 
 const onMouseMove = (e: MouseEvent) => {
   if (!isDown || !categoryBarRef.value) return;
-  e.preventDefault();
   const x = e.pageX - categoryBarRef.value.offsetLeft;
-  const walk = (x - startX) * 2; // Kecepatan geser
-  categoryBarRef.value.scrollLeft = scrollLeft - walk;
+  const walk = x - startX;
+  // Aktifkan drag hanya jika mouse gerak lebih dari 5px — agar klik biasa tetap berfungsi
+  if (Math.abs(walk) > 5) {
+    categoryBarRef.value.classList.add('is-dragging');
+    e.preventDefault();
+    categoryBarRef.value.scrollLeft = scrollLeft - walk * 2;
+  }
 };
 
 const onWheel = (e: WheelEvent) => {
