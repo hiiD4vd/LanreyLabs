@@ -5,7 +5,6 @@
         v-for="item in displayedItems" 
         :key="item.id" 
         :item="item"
-        @select="$emit('select', item)"
       />
       <!-- Sentinel element for infinite scroll -->
       <div ref="sentinelRef" class="sentinel"></div>

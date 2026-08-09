@@ -51,22 +51,14 @@
     <main class="main-content">
       <TemplateGrid 
         :items="filteredItems"
-        @select="handleItemSelect"
-      />
     </main>
     
-    <PreviewModal 
-      :is-open="isModalOpen"
-      :item="selectedItem"
-      @close="isModalOpen = false"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import TemplateGrid from './components/TemplateGrid.vue';
-import PreviewModal from './components/PreviewModal.vue';
 import ThemeSwitcher from './components/ThemeSwitcher.vue';
 import data from './data.json';
 
@@ -111,8 +103,6 @@ const categories = ref(data.categories || []);
 const itemsMap = ref<Record<string, any>>(data.items || {});
 
 const selectedCategory = ref('All');
-const selectedItem = ref<{ id: string; title: string; mediaUrl: string; mediaType: string; codeUrl: string } | null>(null);
-const isModalOpen = ref(false);
 const currentTheme = ref('awwwards'); // Default theme
 
 const getPriority = (category: string) => {
@@ -137,11 +127,6 @@ const filteredItems = computed(() => {
 
 const handleCategorySelect = (category: string) => {
   selectedCategory.value = category;
-};
-
-const handleItemSelect = (item: any) => {
-  selectedItem.value = item;
-  isModalOpen.value = true;
 };
 </script>
 

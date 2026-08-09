@@ -1,5 +1,5 @@
 <template>
-  <div class="template-card" @click="$emit('select')" ref="cardRef">
+  <div class="template-card" ref="cardRef">
     <div class="video-container" ref="videoContainer" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
       <!-- Media will only load its source when the card is intersecting (lazy loaded) -->
       <video
@@ -56,7 +56,6 @@ const props = defineProps<{
   };
 }>();
 
-defineEmits(['select']);
 
 const cardRef = ref<HTMLElement | null>(null);
 const videoRef = ref<HTMLVideoElement | null>(null);
@@ -124,7 +123,7 @@ onBeforeUnmount(() => {
 .template-card {
   display: flex;
   flex-direction: column;
-  cursor: pointer;
+  cursor: default;
   background: var(--card-bg);
   border-radius: var(--card-radius);
   border: var(--card-border);
